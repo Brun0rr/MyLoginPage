@@ -1,0 +1,251 @@
+<%- include layouts/header.ejs %>
+
+			<!-- Main -->
+			<section id="main" class="container">
+				<header>
+					<h2>Elements</h2>
+					<p>Just an assorted selection of elements.</p>
+				</header>
+				<div class="row">
+					<div class="12u">
+						<!-- Form -->
+						<section class="box">
+							<center>
+								<h3>Formulário</h3></center>
+							<form method="post" action="#">
+								<h4>Participação</h4>
+								<div class="row uniform 50%">
+									<div class="4u 12u(narrower)">
+										<input type="radio" id="presencial" name="priority" checked>
+										<label for="presencial">Presencial</label>
+									</div>
+									<div class="4u 12u(narrower)">
+										<input type="radio" id="online" name="priority">
+										<label for="online">Online</label>
+									</div>
+									<div class="4u 12u(narrower)">
+										<input type="radio" id="ambos" name="priority">
+										<label for="ambos">Ambos</label>
+									</div>
+								</div>
+								<h4>O que procura</h4>
+								<div class="row uniform 50%">
+									<div class="12u">
+										<div class="select-wrapper">
+											<select name="category" id="category" onChange="showDiv(this.value);">
+														<option value="">- Selecione -</option>
+														<option value="1">Carro</option>
+														<option value="2">Moto</option>
+														<option value="3">Casa</option>
+														<option value="4">Apartamento</option>
+														<option value="5">Sala comercial</option>
+														<option value="6">Terreno</option>
+														<option value="7">Chácara</option>
+														<option value="8">Fazenda</option>
+													</select>
+										</div>
+									</div>
+								</div>
+								<h4 id="tipotitulo" style="display: none;">Tipo</h4>
+								<!-- <div class="row uniform 50%" style="display: none;"> -->
+								<div id="tipo" class="row uniform 50%" style="display: none;">
+									<div class="2u 12u(narrower)">
+										<input type="checkbox" id="Carro" name="Carro">
+										<label for="Carro">Passeio</label>
+									</div>
+									<div class="2u 12u(narrower)">
+										<input type="checkbox" id="Moto" name="Moto">
+										<label for="Moto">Conversível</label>
+									</div>
+									<div class="2u 12u(narrower)">
+										<input type="checkbox" id="Casa" name="Casa">
+										<label for="Casa">Pickup</label>
+									</div>
+									<div class="2u 12u(narrower)">
+										<input type="checkbox" id="salacom" name="salacom">
+										<label for="salacom">SUV</label>
+									</div>
+									<div class="2u 12u(narrower)">
+										<input type="checkbox" id="Apartamento" name="Apartamento">
+										<label for="Apartamento">Antigo</label>
+									</div>
+								</div>
+								<h4 id="cilindradatitulo" style="display: none;">Cilindrada</h4>
+								<div id="cilindrada" class="row uniform 50%" style="display: none;">
+									<div class="12u">
+										<div class="select-wrapper">
+											<select name="category" id="category">
+														<option value="">- Selecione -</option>
+														<option value="1">50</option>
+														<option value="1">100</option>
+														<option value="1">125</option>
+														<option value="1">150</option>
+														<option value="1">200</option>
+														<option value="1">250</option>
+														<option value="1">300</option>
+														<option value="1">350</option>
+														<option value="1">400</option>
+														<option value="1">450</option>
+														<option value="1">500</option>
+														<option value="1">550</option>
+														<option value="1">600</option>
+														<option value="1">650</option>
+														<option value="1">700</option>
+														<option value="1">750</option>
+														<option value="1">800</option>
+														<option value="1">850</option>
+														<option value="1">900</option>
+														<option value="1">950</option>
+														<option value="1">1000</option>
+														<option value="1">Acima de 1000</option>
+													</select>
+										</div>
+									</div>
+								</div>
+								<h4>Marca</h4>
+								<div class="row uniform 50%">
+									<div class="12u">
+										<div class="select-wrapper">
+											<select name="category" id="category">
+														<option value="">- Selecione -</option>
+														<option value="1">Marca 1</option>
+														<option value="1">Marca 2</option>
+														<option value="1">Marca 3</option>
+													</select>
+										</div>
+									</div>
+								</div>
+								<h4>Modelo</h4>
+								<div class="row uniform 50%">
+									<div class="12u">
+										<div class="select-wrapper">
+											<select name="category" id="category">
+														<option value="">- Selecione -</option>
+														<option value="1">Modelo 1</option>
+														<option value="1">Modelo 2</option>
+														<option value="1">Modelo 3</option>
+													</select>
+										</div>
+									</div>
+								</div>
+								<h4>Ano</h4>
+								<div class="row uniform 50%">
+									<div class="6u 12u(narrower)">
+										<div class="select-wrapper">
+											<select name="category" id="category">
+														<option value="">- De -</option>
+														<% for(var i = new Date().getFullYear(); i >= 1900; i--) { %>
+        												<option value="<%= i %>"><%= i %></option>
+  														<% } %>
+													</select>
+										</div>
+									</div>
+									<div class="6u 12u(narrower)">
+										<div class="select-wrapper">
+											<select name="category" id="category">
+														<option value="">- De -</option>
+														<% for(var i = new Date().getFullYear(); i >= 1900; i--) { %>
+        												<option value="<%= i %>"><%= i %></option>
+  														<% } %>
+													</select>
+										</div>
+									</div>
+								</div>
+								<h4>Cor</h4>
+								<div class="row uniform 50%">
+									<div class="12u">
+										<div class="select-wrapper">
+											<select name="category" id="category">
+														<option value="">- Selecione -</option>
+														<option value="1">Azul</option>
+														<option value="1">Vermelho</option>
+														<option value="1">Verde</option>
+													</select>
+										</div>
+									</div>
+								</div>
+								<h4>Combustível</h4>
+								<!-- <div class="row uniform 50%" style="display: none;"> -->
+								<div class="row uniform 50%">
+									<div class="3u 12u(narrower)">
+										<input type="checkbox" id="Alcool" name="Alcool">
+										<label for="Alcool">Alcool</label>
+									</div>
+									<div class="3u 12u(narrower)">
+										<input type="checkbox" id="Gasolina" name="Gasolina">
+										<label for="Gasolina">Gasolina</label>
+									</div>
+									<div class="3u 12u(narrower)">
+										<input type="checkbox" id="Diesel" name="Diesel">
+										<label for="Diesel">Diesel</label>
+									</div>
+									<div class="3u 12u(narrower)">
+										<input type="checkbox" id="Flex" name="Flex">
+										<label for="Flex">Flex</label>
+									</div>
+								</div>
+								<h4>Lance</h4>
+								<div class="row uniform 50%">
+									<div class="6u 12u(mobilep)">
+										<input type="text" name="lancemin" id="lancemin" value="0,00" placeholder="Lance mínimo" onKeyPress="return(MascaraMoeda(this,'.',',',event))" />
+									</div>
+									<div class="6u 12u(mobilep)">
+										<input type="text" name="lancemax" id="lancemax" value="0,00" placeholder="Lance máximo" onKeyPress="return(MascaraMoeda(this,'.',',',event))" />
+									</div>
+								</div>
+								<h4>Avaliação</h4>
+								<div class="row uniform 50%">
+									<div class="6u 12u(mobilep)">
+										<input type="text" name="avaliacaomin" id="avaliacaomin" value="0,00" placeholder="Valor mínimo" onKeyPress="return(MascaraMoeda(this,'.',',',event))" />
+									</div>
+									<div class="6u 12u(mobilep)">
+										<input type="text" name="avaliacaomax" id="avaliacaomax" value="0,00" placeholder="Valor máximo" onKeyPress="return(MascaraMoeda(this,'.',',',event))" />
+									</div>
+								</div>
+								<h4>Sucata</h4>
+								<div class="row uniform 50%">
+									<div class="6u 12u(narrower)">
+										<input type="radio" id="simsucata" name="sucata" checked>
+										<label for="simsucata">Sim</label>
+									</div>
+									<div class="6u 12u(narrower)">
+										<input type="radio" id="naosucata" name="sucata">
+										<label for="naosucata">Não</label>
+									</div>
+								</div>
+								<h4>Sinistro</h4>
+								<div class="row uniform 50%">
+									<div class="6u 12u(narrower)">
+										<input type="radio" id="simsinistro" name="sinistro" checked>
+										<label for="simsinistro">Sim</label>
+									</div>
+									<div class="6u 12u(narrower)">
+										<input type="radio" id="naosinistro" name="sinistro">
+										<label for="naosinistro">Não</label>
+									</div>
+								</div>
+								<h4>Informações Adicionais</h4>
+								<div class="row uniform 50%">
+									<div class="12u">
+										<textarea name="infoadd" id="infoadd" placeholder="Informações adicionais" rows="6"></textarea>
+									</div>
+								</div>
+								<hr />
+								<center>
+									<div class="row uniform">
+										<div class="12u">
+											<ul class="actions">
+												<li><input type="submit" value="Enviar" /></li>
+												<li><input type="reset" value="Reset" class="alt" /></li>
+											</ul>
+										</div>
+									</div>
+								</center>
+							</form>
+						</section>
+
+					</div>
+				</div>
+			</section>
+
+			<%- include layouts/footer.ejs %>

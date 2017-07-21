@@ -1,0 +1,58 @@
+<%- include layouts/header.ejs %>
+
+			<!-- Main -->
+			<section id="main" class="container">
+				<div class="row">
+					<div class="12u">
+
+						<!-- Form -->
+						<section class="box">
+							<center>
+								<h3>Cadastre-se</h3></center>
+							<% if (message.length > 0) { %>
+								<div class="alert alert-danger">
+									<%= message %>
+								</div>
+								<% } %>
+									<form method="post" action="/signup">
+										<div class="row uniform 50%">
+											<div class="6u 12u(mobilep)">
+												<input type="text" name="name" id="name" value="" placeholder="Nome" required="" oninvalid="this.setCustomValidity('Campo obrigatório')" oninput="setCustomValidity('')" />
+											</div>
+											<div class="6u 12u(mobilep)">
+												<input type="text" name="phone" id="phone" value="" placeholder="Telefone" oninput="mascara( this, mascaraTelefone );" maxlength="14" required />
+											</div>
+										</div>
+										<div class="row uniform 50%">
+											<div class="12u 12u(mobilep)">
+												<input type="email" name="email" id="email" value="" placeholder="E-mail" required="" oninvalid="this.setCustomValidity('Campo obrigatório')" oninput="setCustomValidity('')" />
+											</div>
+										</div>
+										<div class="row uniform 50%">
+											<div class="12u 12u(mobilep)">
+												<input type="password" name="password" id="password" value="" placeholder="Senha" required />
+											</div>
+										</div>
+										<div class="row uniform 50%">
+											<div class="12u 12u(mobilep)">
+												<input type="password" name="confirm_password" id="confirm_password" value="" placeholder="Confirmar Senha" required />
+											</div>
+										</div>
+										<hr />
+										<center>
+											<div class="row uniform">
+												<div class="12u">
+													<ul class="actions">
+														<li><input type="submit" value="Registrar" onClick="validarSenha()" /></li>
+														<li><a href="/" class="button">Voltar</a></li>
+													</ul>
+												</div>
+											</div>
+										</center>
+									</form>
+						</section>
+					</div>
+				</div>
+	</div>
+
+	<%- include layouts/footer.ejs %>
