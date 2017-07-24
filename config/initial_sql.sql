@@ -102,6 +102,7 @@ CREATE TABLE tb_formulario_tipo (
 ) ENGINE=InnoDB;
 
 INSERT INTO tb_marca (descricao) VALUES
+	('TODAS'),
 	('ACURA'),
 	('ADLY'),
 	('AGRALE'),
@@ -278,6 +279,7 @@ INSERT INTO tb_marca (descricao) VALUES
 	('YAMAHA');
 
 INSERT INTO tb_cor (descricao) VALUES
+	('TODAS'),
 	('Abóbora'),
 	('Água'),
 	('Água-marinha'),
@@ -456,12 +458,6 @@ INSERT INTO tb_cor (descricao) VALUES
 INSERT INTO tb_categoria (descricao) VALUES
 	('Carro'),
 	('Moto');
-	-- ('Casa'),
-	-- ('Apartamento'),
-	-- ('Sala Comercial'),
-	-- ('Terreno'),
-	-- ('Chácara'),
-	-- ('Fazenda');
 
 INSERT INTO tb_participacao (descricao) VALUES
 	('Presencial'),
@@ -483,3 +479,4 @@ INSERT INTO tb_tipo (id, descricao) VALUES
 
 INSERT INTO tb_usuario (id, nome, telefone, email, password) VALUES
 	(1, 'ADMIN', '(00)00000-0000', 'admin@localhost', '$2a$10$uUbf1X3jgf.iDeWZGzgULeFomDSFurxdPe7/hJdIaUE5IIjZdP9Yi');
+	-- HASH para senha: admin123

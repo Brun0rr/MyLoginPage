@@ -104,7 +104,6 @@
 									<div class="12u">
 										<div class="select-wrapper">
 											<select name="marca" id="marca" required="" oninvalid="this.setCustomValidity('Campo obrigatório')" oninput="setCustomValidity('')">
-														<option value="">- Selecione -</option>
 														<% marca.forEach(function(item) { %>
         												<option value="<%= item.id %>"><%= item.descricao %></option>
   														<% }) %>
@@ -146,7 +145,6 @@
 									<div class="12u">
 										<div class="select-wrapper">
 											<select name="cor" id="cor">
-														<option value="">- Selecione -</option>
 														<% cor.forEach(function(item) { %>
         												<option value="<%= item.id %>"><%= item.descricao %></option>
   														<% }) %>
