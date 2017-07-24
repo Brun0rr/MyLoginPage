@@ -23,7 +23,7 @@ module.exports = function(passport) {
 
   // used to deserialize the user
   passport.deserializeUser(function(id, done) {
-    connection.query("SELECT * FROM users WHERE id = ? ", [id], function(err, rows) {
+    connection.query("SELECT * FROM tb_usuario WHERE id = ? ", [id], function(err, rows) {
       done(err, rows[0]);
     });
   });
@@ -43,7 +43,7 @@ module.exports = function(passport) {
         passReqToCallback: true // allows us to pass back the entire request to the callback
       },
       function(req, email, password, done) { // callback with email and password from our form
-        connection.query("SELECT * FROM users WHERE email = ?", [email], function(err, rows) {
+        connection.query("SELECT * FROM tb_usuario WHERE email = ?", [email], function(err, rows) {
           if (err)
             return done(err);
           if (!rows.length) {

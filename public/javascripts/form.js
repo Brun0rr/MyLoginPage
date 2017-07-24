@@ -3,12 +3,12 @@ function showDiv(div) {
     tipo.style.display = 'block';
     tipotitulo.style.display = 'block';
     cilindradatitulo.style.display = 'none';
-    cilindrada.style.display = 'none';
+    cilindradadiv.style.display = 'none';
   } else if (div == 2){
     tipo.style.display = 'none';
     tipotitulo.style.display = 'none';
     cilindradatitulo.style.display = 'block';
-    cilindrada.style.display = 'block';
+    cilindradadiv.style.display = 'block';
   }
 }
 

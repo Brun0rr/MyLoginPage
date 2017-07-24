@@ -1,3 +1,5 @@
+SET FOREIGN_KEY_CHECKS=0;
+
 DROP TABLE IF EXISTS tb_formulario;
 DROP TABLE IF EXISTS tb_marca;
 DROP TABLE IF EXISTS tb_cor;
@@ -8,6 +10,8 @@ DROP TABLE IF EXISTS tb_tipo;
 DROP TABLE IF EXISTS tb_usuario;
 DROP TABLE IF EXISTS tb_formulario_combustivel;
 DROP TABLE IF EXISTS tb_formulario_tipo;
+
+SET FOREIGN_KEY_CHECKS=1;
 
 CREATE TABLE tb_marca (
 	id INTEGER NOT NULL AUTO_INCREMENT,
@@ -58,7 +62,7 @@ CREATE TABLE tb_formulario (
 	id INTEGER NOT NULL AUTO_INCREMENT,
 	id_usuario INTEGER NOT NULL,
 	id_marca INTEGER NOT NULL,
-	id_cor INTEGER NOT NULL,
+	id_cor INTEGER,
 	id_categoria INTEGER NOT NULL,
 	id_participacao INTEGER NOT NULL,
 	cilindrada VARCHAR(5),
@@ -451,28 +455,28 @@ INSERT INTO tb_cor (descricao) VALUES
 
 INSERT INTO tb_categoria (descricao) VALUES
 	('Carro'),
-	('Moto'),
-	('Casa'),
-	('Apartamento'),
-	('Sala Comercial'),
-	('Terreno'),
-	('Chácara'),
-	('Fazenda');
+	('Moto');
+	-- ('Casa'),
+	-- ('Apartamento'),
+	-- ('Sala Comercial'),
+	-- ('Terreno'),
+	-- ('Chácara'),
+	-- ('Fazenda');
 
 INSERT INTO tb_participacao (descricao) VALUES
 	('Presencial'),
 	('Online'),
 	('Ambos');
 
-INSERT INTO tb_combustivel (descricao) VALUES
-	('Alcool'),
-	('Gasolina'),
-	('Diesel'),
-	('Flex');
+INSERT INTO tb_combustivel (id, descricao) VALUES
+	(1, 'Álcool'),
+	(2, 'Gasolina'),
+	(3, 'Diesel'),
+	(4, 'Flex');
 
-INSERT INTO tb_tipo (descricao) VALUES
-	('Passeio'),
-	('Conversível'),
-	('Pickup'),
-	('SUV'),
-	('Antigo');
+INSERT INTO tb_tipo (id, descricao) VALUES
+	(1, 'Passeio'),
+	(2, 'Conversível'),
+	(3, 'Pickup'),
+	(4, 'SUV'),
+	(5, 'Antigo');

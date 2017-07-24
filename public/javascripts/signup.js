@@ -9,10 +9,10 @@ function validarSenha() {
   } else {
     password.setCustomValidity("A senha deve conter pelo menos 6 caracteres");
   }
-  if (phone.value.length >= 13) {
-    phone.setCustomValidity('');
+  if (telefone.value.length >= 13) {
+    telefone.setCustomValidity('');
   } else {
-    phone.setCustomValidity("Telefone inválido");
+    telefone.setCustomValidity("Telefone inválido");
   }
 }
 

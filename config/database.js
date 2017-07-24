@@ -5,7 +5,8 @@ var connection = mysql.createConnection({
   user: 'root',
   password: 'mariadb',
   port: 3306,
-  database: 'aquileilao'
+  database: 'aquileilao',
+  multipleStatements: true
 });
 
 connection.connect(function(err) {

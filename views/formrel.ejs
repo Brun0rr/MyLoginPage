@@ -1,0 +1,197 @@
+<%- include layouts/header.ejs %>
+
+	<!-- Main -->
+	<section id="main" class="container">
+		<header>
+			<h2>Elements</h2>
+			<p>Just an assorted selection of elements.</p>
+		</header>
+		<div class="row">
+			<div class="12u">
+				<!-- Form -->
+				<section class="box">
+					<center>
+						<h3>Formulário</h3></center>
+					<form method="post" action="/form">
+						<h4>Solicitante</h4>
+						<div class="row uniform 50%">
+							<div class="8u 12u(mobilep)">
+								<input type="text" value="<%= dataForm.nome %>" readonly/>
+							</div>
+							<div class="4u 12u(mobilep)">
+								<input type="text" value="<%= dataForm.data_envio %>" readonly/>
+							</div>
+						</div>
+						<h4>Participação</h4>
+						<div class="row uniform 50%">
+							<div class="12u 12u(mobilep)">
+								<input type="text" value="<%= dataForm.participacao %>" readonly/>
+							</div>
+						</div>
+						<h4>Categoria</h4>
+						<div class="row uniform 50%">
+							<div class="12u 12u(mobilep)">
+								<input type="text" value="<%= dataForm.categoria %>" readonly/>
+							</div>
+						</div>
+						<h4 id="tipotitulo" <%= ((data.categoria == "Moto") ? 'style="display: none;"' : "") %>>Tipo</h4>
+						<div id="tipo" class="row uniform 50%" <%= ((data.categoria == "Moto") ? 'style="display: none;"' : "") %>>
+							<div class="2u 12u(narrower)">
+								<input type="checkbox" id="passeio" name="passeio" <%= ((data.passeio == 1) ? "checked" : "") %> disabled>
+								<label for="passeio">Passeio</label>
+							</div>
+							<div class="2u 12u(narrower)">
+								<input type="checkbox" id="conversivel" name="conversivel" <%= ((data.conversivel == 1) ? "checked" : "") %> disabled>
+								<label for="conversivel">Conversível</label>
+							</div>
+							<div class="2u 12u(narrower)">
+								<input type="checkbox" id="pickup" name="pickup" <%= ((data.pickup == 1) ? "checked" : "") %> disabled>
+								<label for="pickup">Pickup</label>
+							</div>
+							<div class="2u 12u(narrower)">
+								<input type="checkbox" id="suv" name="suv" <%= ((data.suv == 1) ? "checked" : "") %> disabled>
+								<label for="suv">SUV</label>
+							</div>
+							<div class="2u 12u(narrower)">
+								<input type="checkbox" id="antigo" name="antigo" <%= ((data.antigo == 1) ? "checked" : "") %> disabled>
+								<label for="antigo">Antigo</label>
+							</div>
+						</div>
+						<h4 id="cilindradatitulo" <%= ((data.categoria == "Carro") ? 'style="display: none;"' : "") %>>Cilindrada</h4>
+						<div class="row uniform 50%" <%= ((data.categoria == "Carro") ? 'style="display: none;"' : "") %>>
+							<div class="12u 12u(mobilep)">
+								<input type="text" value="<%= dataForm.cilindrada %>" readonly/>
+							</div>
+						</div>
+						<h4>Marca</h4>
+						<div class="row uniform 50%">
+							<div class="12u 12u(mobilep)">
+								<input type="text" value="<%= dataForm.marca %>" readonly/>
+							</div>
+						</div>
+						<h4>Modelo</h4>
+						<div class="row uniform 50%">
+							<div class="12u 12u(mobilep)">
+								<input type="text" value="<%= dataForm.modelo %>" readonly/>
+							</div>
+						</div>
+						<h4>Ano</h4>
+						<div class="row uniform 50%">
+							<div class="6u 12u(mobilep)">
+								<input type="text" value="<%= dataForm.ano_inicio %>" readonly/>
+							</div>
+							<div class="6u 12u(mobilep)">
+								<input type="text" value="<%= dataForm.ano_fim %>" readonly/>
+							</div>
+						</div>
+						<h4>Cor</h4>
+						<div class="row uniform 50%">
+							<div class="12u 12u(mobilep)">
+								<input type="text" value="<%= dataForm.cor %>" readonly/>
+							</div>
+						</div>
+						<h4>Combustível</h4>
+						<div class="row uniform 50%">
+							<div class="3u 12u(narrower)">
+								<input type="checkbox" id="alcool" name="alcool" <%= ((data.alcool == 1) ? "checked" : "") %> disabled/>
+								<label for="alcool">Alcool</label>
+							</div>
+							<div class="3u 12u(narrower)">
+								<input type="checkbox" id="gasolina" name="gasolina" <%= ((data.gasolina == 1) ? "checked" : "") %> disabled/>
+								<label for="gasolina">Gasolina</label>
+							</div>
+							<div class="3u 12u(narrower)">
+								<input type="checkbox" id="diesel" name="diesel" <%= ((data.diesel == 1) ? "checked" : "") %> disabled/>
+								<label for="diesel">Diesel</label>
+							</div>
+							<div class="3u 12u(narrower)">
+								<input type="checkbox" id="flex" name="flex" <%= ((data.flex == 1) ? "checked" : "") %> disabled/>
+								<label for="flex">Flex</label>
+							</div>
+						</div>
+						<h4>Lance</h4>
+						<div class="row uniform 50%">
+							<div class="6u 12u(mobilep)">
+								<input type="text" value="<%= dataForm.lance_min %>" readonly/>
+							</div>
+							<div class="6u 12u(mobilep)">
+								<input type="text" value="<%= dataForm.lance_max %>" readonly/>
+							</div>
+						</div>
+						<h4>Avaliação</h4>
+						<div class="row uniform 50%">
+							<div class="6u 12u(mobilep)">
+								<input type="text" value="<%= dataForm.avaliacao_min %>" readonly/>
+							</div>
+							<div class="6u 12u(mobilep)">
+								<input type="text" value="<%= dataForm.avaliacao_max %>" readonly/>
+							</div>
+						</div>
+						<h4>Sucata</h4>
+						<div class="row uniform 50%">
+							<% if (dataForm.sucata == 1){ %>
+								<div class="6u 12u(narrower)">
+									<input type="radio" id="simsucata" name="sucata" checked>
+									<label for="simsucata">Sim</label>
+								</div>
+								<div class="6u 12u(narrower)">
+									<input type="radio" id="naosucata" name="sucata" disabled>
+									<label for="naosucata">Não</label>
+								</div>
+								<% } else {%>
+									<div class="6u 12u(narrower)">
+										<input type="radio" id="simsucata" name="sucata" disabled>
+										<label for="simsucata">Sim</label>
+									</div>
+									<div class="6u 12u(narrower)">
+										<input type="radio" id="naosucata" name="sucata" checked>
+										<label for="naosucata">Não</label>
+									</div>
+									<% } %>
+						</div>
+						<h4>Sinistro</h4>
+						<div class="row uniform 50%">
+							<% if (dataForm.sinistro == 1){ %>
+								<div class="6u 12u(narrower)">
+									<input type="radio" id="simsinistro" name="sinistro" checked>
+									<label for="simsinistro">Sim</label>
+								</div>
+								<div class="6u 12u(narrower)">
+									<input type="radio" id="naosinistro" name="sinistro" disabled>
+									<label for="naosinistro">Não</label>
+								</div>
+								<% } else {%>
+									<div class="6u 12u(narrower)">
+										<input type="radio" id="simsinistro" name="sinistro" disabled>
+										<label for="simsinistro">Sim</label>
+									</div>
+									<div class="6u 12u(narrower)">
+										<input type="radio" id="naosinistro" name="sinistro" checked>
+										<label for="naosinistro">Não</label>
+									</div>
+									<% } %>
+						</div>
+						<h4>Informações Adicionais</h4>
+						<div class="row uniform 50%">
+							<div class="12u">
+								<textarea rows="6" value="<%= dataForm.info_adicional %>" readonly></textarea>
+							</div>
+						</div>
+						<hr />
+						<center>
+							<div class="row uniform">
+								<div class="12u">
+									<ul class="actions">
+										<li><a href="/relatorio" class="button">Voltar</a></li>
+									</ul>
+								</div>
+							</div>
+						</center>
+					</form>
+				</section>
+
+			</div>
+		</div>
+	</section>
+
+	<%- include layouts/footer.ejs %>

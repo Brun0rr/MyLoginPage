@@ -17,10 +17,10 @@
 							<form method="post" action="/profile">
 								<div class="row uniform 50%">
 									<div class="6u 12u(mobilep)">
-										<input type="text" name="name" id="name" value="<%= user.name %>" placeholder="Nome" required="" oninvalid="this.setCustomValidity('Campo obrigatório')" oninput="setCustomValidity('')" />
+										<input type="text" name="nome" id="nome" value="<%= user.nome %>" placeholder="Nome" required="" oninvalid="this.setCustomValidity('Campo obrigatório')" oninput="setCustomValidity('')" />
 									</div>
 									<div class="6u 12u(mobilep)">
-										<input type="text" name="phone" id="phone" value="<%= user.phone %>" placeholder="Telefone" oninput="mascara( this, mascaraTelefone );" maxlength="14" required />
+										<input type="text" name="telefone" id="telefone" value="<%= user.telefone %>" placeholder="Telefone" oninput="mascara( this, mascaraTelefone );" maxlength="14" required />
 									</div>
 								</div>
 								<div class="row uniform 50%">
