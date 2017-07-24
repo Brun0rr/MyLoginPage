@@ -6,7 +6,7 @@ A Node.js, Express, MySQL e Passport.
 
 ## Installation
 
-    git clone https://github.com/jkup/hammer.git
+    git clone https://github.com/Brun0rr/MyLoginPage.git
     cd myproject
     npm install
 
