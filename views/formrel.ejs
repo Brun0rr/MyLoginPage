@@ -34,8 +34,13 @@
 								<input type="text" value="<%= dataForm.categoria %>" readonly/>
 							</div>
 						</div>
-						<h4 id="tipotitulo" <%= ((data.categoria == "Moto") ? 'style="display: none;"' : "") %>>Tipo</h4>
-						<div id="tipo" class="row uniform 50%" <%= ((data.categoria == "Moto") ? 'style="display: none;"' : "") %>>
+						<% if (dataForm.categoria == "Moto") { %>
+							<h4 id="tipotitulo" style="display: none">Tipo</h4>
+							<div id="tipo" class="row uniform 50%" style="display: none">
+						<% } else { %>
+							<h4 id="tipotitulo">Tipo</h4>
+							<div id="tipo" class="row uniform 50%">
+						<% } %>
 							<div class="2u 12u(narrower)">
 								<input type="checkbox" id="passeio" name="passeio" <%= ((data.passeio == 1) ? "checked" : "") %> disabled>
 								<label for="passeio">Passeio</label>
@@ -57,8 +62,13 @@
 								<label for="antigo">Antigo</label>
 							</div>
 						</div>
-						<h4 id="cilindradatitulo" <%= ((data.categoria == "Carro") ? 'style="display: none;"' : "") %>>Cilindrada</h4>
-						<div class="row uniform 50%" <%= ((data.categoria == "Carro") ? 'style="display: none;"' : "") %>>
+						<% if (dataForm.categoria == "Carro") { %>
+							<h4 id="cilindradatitulo" style="display: none;">Cilindrada</h4>
+							<div class="row uniform 50%" style="display: none;">
+						<% } else { %>
+							<h4 id="cilindradatitulo" >Cilindrada</h4>
+							<div class="row uniform 50%" >
+						<% } %>
 							<div class="12u 12u(mobilep)">
 								<input type="text" value="<%= dataForm.cilindrada %>" readonly/>
 							</div>
@@ -172,9 +182,10 @@
 									<% } %>
 						</div>
 						<h4>Informações Adicionais</h4>
+						<% console.log(dataForm) %>
 						<div class="row uniform 50%">
 							<div class="12u">
-								<textarea rows="6" value="<%= dataForm.info_adicional %>" readonly></textarea>
+								<textarea rows="6" readonly><%= dataForm.info_adicional %></textarea>
 							</div>
 						</div>
 						<hr />

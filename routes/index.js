@@ -156,8 +156,6 @@ module.exports = function(app, passport) {
     if (req.body.anofim.length)
       anofim = req.body.anofim;
 
-
-
     connection.query("INSERT INTO tb_formulario (id_usuario,id_marca,id_cor,id_categoria,id_participacao,cilindrada,ano_inicio,ano_fim,modelo,lance_min,lance_max,avaliacao_min,avaliacao_max,sucata,sinistro,info_adicional,data_envio) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW())", [req.user.id, marca, cor, categoria, req.body.participacao, req.body.cilindrada, anoini, anofim, req.body.modelo, req.body.lancemin.replace(/\./g, '').replace(',', '.'), req.body.lancemax.replace(/\./g, '').replace(',', '.'), req.body.avaliacaomin.replace(/\./g, '').replace(',', '.'), req.body.avaliacaomax.replace(/\./g, '').replace(',', '.'), sucata, sinistro, req.body.infoadd], function(err, rows) {
       if (err)
         console.log(err);
@@ -202,64 +200,93 @@ module.exports = function(app, passport) {
   });
 
   app.get('/relatorio', isLoggedIn, function(req, res) {
-    connection.query("SELECT tb_formulario.id, tb_formulario.data_envio, tb_usuario.nome FROM tb_formulario INNER JOIN tb_usuario ON tb_formulario.id_usuario = tb_usuario.id;", function(err, rows) {
-      if (err)
-        console.log(err);
-      for (var i = 0; i < rows.length; i++) {
-        rows[i].data_envio = dateFormat(rows[0].data_envio, "yyyy-mm-dd");
-      };
-      res.render('relatorio.ejs', {
-        user: req.user,
-        lista: rows
+    if (req.user.id == 1) {
+      connection.query("SELECT tb_formulario.id, tb_formulario.data_envio, tb_usuario.nome FROM tb_formulario INNER JOIN tb_usuario ON tb_formulario.id_usuario = tb_usuario.id;", function(err, rows) {
+        if (err)
+          console.log(err);
+        for (var i = 0; i < rows.length; i++) {
+          rows[i].data_envio = dateFormat(rows[0].data_envio, "yyyy-mm-dd");
+        };
+        res.render('relatorio.ejs', {
+          user: req.user,
+          lista: rows
+        });
       });
-    });
+    } else {
+      res.redirect('/');
+    }
   });
 
   app.get('/relatorio/:id', isLoggedIn, function(req, res) {
-    var id = req.params.id;
-    connection.query("SELECT tb_formulario.cilindrada, tb_formulario.info_adicional, tb_formulario.ano_inicio, tb_formulario.ano_fim, tb_formulario.modelo, tb_formulario.lance_min, tb_formulario.lance_max, tb_formulario.avaliacao_min, tb_formulario.avaliacao_max, tb_formulario.sucata, tb_formulario.sinistro, tb_formulario.data_envio, tb_usuario.nome, tb_marca.descricao AS marca, tb_cor.descricao AS cor, tb_categoria.descricao as categoria, tb_participacao.descricao as participacao FROM tb_formulario INNER JOIN tb_usuario ON tb_formulario.id_usuario = tb_usuario.id INNER JOIN tb_marca ON tb_formulario.id_marca = tb_marca.id INNER JOIN tb_cor ON tb_formulario.id_cor = tb_cor.id INNER JOIN tb_categoria ON tb_formulario.id_categoria = tb_categoria.id INNER JOIN tb_participacao ON tb_formulario.id_participacao = tb_participacao.id where tb_formulario.id = ?;SELECT * FROM tb_formulario_combustivel WHERE id_formulario = ?;SELECT * FROM tb_formulario_tipo WHERE id_formulario = ?;", [id,id,id], function(err, rows) {
-      if (err)
-        console.log(err);
-      rows.data_envio = dateFormat(rows.data_envio, "yyyy-mm-dd");
-      var data = {
-        alcool: 0,
-        gasolina: 0,
-        diesel: 0,
-        flex: 0,
-        passeio: 0,
-        conversivel: 0,
-        pickup: 0,
-        suv: 0,
-        antigo: 0
-      };
-      rows[1].forEach(function(item) {
-        if (item.id_combustivel == 1)
-          data.alcool = 1;
-        if (item.id_combustivel == 2)
-          data.gasolina = 1;
-        if (item.id_combustivel == 3)
-          data.diesel = 1;
-        if (item.id_combustivel == 4)
-          data.flex = 1;
+    if (req.user.id == 1) {
+      var id = req.params.id;
+      connection.query("SELECT tb_formulario.cilindrada, tb_formulario.info_adicional, tb_formulario.ano_inicio, tb_formulario.ano_fim, tb_formulario.modelo, tb_formulario.lance_min, tb_formulario.lance_max, tb_formulario.avaliacao_min, tb_formulario.avaliacao_max, tb_formulario.sucata, tb_formulario.sinistro, tb_formulario.data_envio, tb_usuario.nome, tb_marca.descricao AS marca, tb_cor.descricao AS cor, tb_categoria.descricao as categoria, tb_participacao.descricao as participacao FROM tb_formulario INNER JOIN tb_usuario ON tb_formulario.id_usuario = tb_usuario.id INNER JOIN tb_marca ON tb_formulario.id_marca = tb_marca.id INNER JOIN tb_cor ON tb_formulario.id_cor = tb_cor.id INNER JOIN tb_categoria ON tb_formulario.id_categoria = tb_categoria.id INNER JOIN tb_participacao ON tb_formulario.id_participacao = tb_participacao.id where tb_formulario.id = ?;SELECT * FROM tb_formulario_combustivel WHERE id_formulario = ?;SELECT * FROM tb_formulario_tipo WHERE id_formulario = ?;", [id, id, id], function(err, rows) {
+        if (err)
+          console.log(err);
+        rows[0].forEach(function(item) {
+          item.data_envio = dateFormat(rows.data_envio, "yyyy-mm-dd");
+          item.lance_min = formatReal(item.lance_min);
+          item.lance_max = formatReal(item.lance_max);
+          item.avaliacao_min = formatReal(item.avaliacao_min);
+          item.avaliacao_max = formatReal(item.avaliacao_max);
+        });
+        var data = {
+          alcool: 0,
+          gasolina: 0,
+          diesel: 0,
+          flex: 0,
+          passeio: 0,
+          conversivel: 0,
+          pickup: 0,
+          suv: 0,
+          antigo: 0
+        };
+        rows[1].forEach(function(item) {
+          if (item.id_combustivel == 1)
+            data.alcool = 1;
+          if (item.id_combustivel == 2)
+            data.gasolina = 1;
+          if (item.id_combustivel == 3)
+            data.diesel = 1;
+          if (item.id_combustivel == 4)
+            data.flex = 1;
+        });
+        rows[2].forEach(function(item) {
+          if (item.id_tipo == 1)
+            data.passeio = 1;
+          if (item.id_tipo == 2)
+            data.conversivel = 1;
+          if (item.id_tipo == 3)
+            data.pickup = 1;
+          if (item.id_tipo == 4)
+            data.suv = 1;
+          if (item.id_tipo == 5)
+            data.antigo = 1;
+        });
+        res.render('formrel.ejs', {
+          user: req.user,
+          data: data,
+          dataForm: rows[0][0]
+        });
       });
-      rows[2].forEach(function(item) {
-        if (item.id_tipo == 1)
-          data.passeio = 1;
-        if (item.id_tipo == 2)
-          data.conversivel = 1;
-        if (item.id_tipo == 3)
-          data.pickup = 1;
-        if (item.id_tipo == 4)
-          data.suv = 1;
-        if (item.id_tipo == 5)
-          data.antigo = 1;
+    } else {
+      res.redirect('/');
+    }
+  });
+
+  app.get('/usuarios', isLoggedIn, function(req, res) {
+    if (req.user.id == 1) {
+      connection.query("SELECT id, nome, telefone, email FROM tb_usuario WHERE id >= 2;", function(err, rows) {
+        if (err)
+          console.log(err);
+        res.render('usuarios.ejs', {
+          user: req.user,
+          lista: rows
+        });
       });
-      res.render('formrel.ejs', {
-        user: req.user,
-        data: data,
-        dataForm: rows[0]
-      });
-    });
+    } else {
+      res.redirect('/');
+    }
   });
 };
 
@@ -270,4 +297,12 @@ function isLoggedIn(req, res, next) {
     return next();
   // if they aren't redirect them to the home page
   res.redirect('/');
+}
+
+function formatReal( int ){
+  var tmp = int+'';
+  if (!tmp.includes('.'))
+    tmp = tmp + '.00';
+  tmp = tmp.replace(/\./g, ',');
+  return tmp;
 }

@@ -30,8 +30,12 @@
               </a>
               <ul>
                 <li><a href="/profile">Minha Conta</a></li>
-                <li><a href="/form">Formulario</a></li>
-                <li><a href="/relatorio">Relatorio</a></li>
+                <% if (user.id == 1) { %>
+                  <li><a href="/relatorio">Relatório</a></li>
+                  <li><a href="/usuarios">Usuários</a></li>
+                <% } else {%>
+                  <li><a href="/form">Formulário</a></li>
+                <% } %>
               </ul>
             </li>
             <li><a href="/logout" class="button">Sair</a></li>

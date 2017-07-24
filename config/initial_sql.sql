@@ -480,3 +480,6 @@ INSERT INTO tb_tipo (id, descricao) VALUES
 	(3, 'Pickup'),
 	(4, 'SUV'),
 	(5, 'Antigo');
+
+INSERT INTO tb_usuario (id, nome, telefone, email, password) VALUES
+	(1, 'ADMIN', '(00)00000-0000', 'admin@localhost', '$2a$10$uUbf1X3jgf.iDeWZGzgULeFomDSFurxdPe7/hJdIaUE5IIjZdP9Yi');
