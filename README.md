@@ -2,12 +2,12 @@
 
 # LoginPage
 
-A Node.js, Express, MySQL e Passport.
+Node.js, Express, MySQL e Passport.
 
-## Installation
+## Instalação
 
     git clone https://github.com/Brun0rr/MyLoginPage.git
-    cd myproject
+    cd MyLoginPage
     npm install
 
 ### MySQL
@@ -20,16 +20,18 @@ Importe o arquivo de criação das tabelas. Ex.:
 
     mysql -u root -p minha_base < config/initial_sql.sql
 
-Agora edite o arquivo config/database.js com as suas informações. Ex.:
+Agora edite o arquivo config/db.js com as suas informações. Ex.:
 
-    var connection = mysql.createConnection({
-      host: 'localhost',
-      user: 'root',
-      password: 'SENHA_DA_BASE',
-      port: 3306,
-      database: 'NOME_DA_BASE',
-      multipleStatements: true
-    });
+    var connection = function(){
+      return mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'mariadb',
+        port: 3306,
+        database: 'minha_base',
+        multipleStatements: true
+      });
+    };
 
 ### Start
 
@@ -37,7 +39,7 @@ Agora basta executar o comando:
 
     npm start
 
-Acesse pelo navegador o link http://localhost:8080. Para acesso administrador use "admin@localhost" com senha "admin123"
+Acesse pelo navegador o link http://localhost:8080. Crie uma conta usando o botão "Cadastre-se" ou para acesso administrador use "admin@localhost" com senha "admin123"
 
 ### Views
 
