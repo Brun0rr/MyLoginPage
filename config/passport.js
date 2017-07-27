@@ -2,10 +2,9 @@
 
 // load all the things we need
 var LocalStrategy = require('passport-local').Strategy;
-
-// load up the user model
 var bcrypt = require('bcrypt-nodejs');
-var connection = require('./database');
+var usuarioModel = require('../models/usuarioModel')();
+
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
@@ -23,7 +22,7 @@ module.exports = function(passport) {
 
   // used to deserialize the user
   passport.deserializeUser(function(id, done) {
-    connection.query("SELECT * FROM tb_usuario WHERE id = ? ", [id], function(err, rows) {
+    usuarioModel.findById(id, function(err, rows){
       done(err, rows[0]);
     });
   });
@@ -43,7 +42,7 @@ module.exports = function(passport) {
         passReqToCallback: true // allows us to pass back the entire request to the callback
       },
       function(req, email, password, done) { // callback with email and password from our form
-        connection.query("SELECT * FROM tb_usuario WHERE email = ?", [email], function(err, rows) {
+        usuarioModel.findByEmail(email, function(err, rows){
           if (err)
             return done(err);
           if (!rows.length) {
